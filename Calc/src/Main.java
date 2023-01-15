@@ -11,7 +11,7 @@ public class Main {
         String exp = scanner.nextLine().trim(); // строка записана без лишних пробелов
 //        задаём массивы римских и арабских цифр, а также числовой массив для конвертаций
         String[] romans = {"I","II","III","IV","V","VI","VII","VIII","IX","X",""};
-        String[] arabians = {"0","1","2","3","4","5","6","7","8","9"};
+        String[] arabians = {"0","1","2","3","4","5","6","7","8","9","10"};
         int[] arabianForRoman = {1,2,3,4,5,6,7,8,9,10,0};
 
 //        эти массивы использвуются для поиска операторов
@@ -67,6 +67,10 @@ public class Main {
             //            преобразование из строки в число
             a = Integer.parseInt(values[0]);
             b = Integer.parseInt(values[1]);
+
+            if(a > 10 || b > 10 || a < 1 || b < 1){
+                throw new IOException("//т.к. переменные выражения не соответствует требованию от 1 до 10 включительно");
+            }
 
             //            вычисления
             switch (indexAction) {
