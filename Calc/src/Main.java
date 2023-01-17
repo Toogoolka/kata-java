@@ -8,8 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите выражение в одну строку:");
         String exp = scanner.nextLine().trim(); // строка записана без лишних пробелов
-        String result = calc(exp);
-        System.out.println(result);
+        System.out.println(calc(exp));
     }
 
 
@@ -26,6 +25,7 @@ public class Main {
 
         int indexAction = 0; //числовой индекс для поиска операторов
         int total = 0;  //итог подсчётов калькулятора
+        String result = "";
 
 //        переменные для калькулятора арабских чисел
         int a;
@@ -39,8 +39,8 @@ public class Main {
         for(int j = 0; j < romans.length; j++) {
             if (input.contains(romans[j])) {
                 romanFlag = true;
-                break;
-            } else if (input.contains(arabians[j])) {
+            }
+            if (input.contains(arabians[j])) {
                 arabianFlag = true;
                 break;
             }
@@ -82,26 +82,21 @@ public class Main {
             switch (indexAction) {
                 case (0) -> {
                     total = a + b;
-                                                            // тут удалил соут с тоталом
-                    break;
+                    result = Integer.toString(total);
                 }
                 case (1) -> {
                     total = a - b;
-//                                                         удалил соут тотал
-                    break;
+                    result = Integer.toString(total);
                 }
                 case (2) -> {
                     total = a * b;
-//                                                          удалил соут тотал
-                    break;
+                    result = Integer.toString(total);
                 }
                 case (3) -> {
                     total = a / b;
-//                                                 удалил соут тотал
-                    break;
+                    result = Integer.toString(total);
                 }
             }
-            System.exit(1);
         }
 
 
@@ -135,126 +130,112 @@ public class Main {
                     }
                 }
             }
-        }
+            //            конвертация результата в римские цифры
+            if (total <= 10){
+                for (int i = 0; i < arabianForRoman.length;i++){
+                    if (total == arabianForRoman[i]) {
+                        result+= romans[i];
+                        break;
+                    }
+                }
 
-        //            конвертация результата в римские цифры
-        String roman = "";
-        if (total <= 10){
-            for (int i = 0; i < arabianForRoman.length;i++){
-                if (total == arabianForRoman[i]) {
-                    roman+= romans[i];
-                    System.out.println(roman);
-                    break;
-                }
-            }
-
-        } else {
-            int lastDigit = total%10;
-            int firstDigit = total/10;
-            switch (firstDigit) {
-                case (1) -> {
-                    roman += "X";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+            } else {
+                int lastDigit = total%10;
+                int firstDigit = total/10;
+                switch (firstDigit) {
+                    case (1) -> {
+                        result += "X";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (2) -> {
-                    roman += "XX";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (2) -> {
+                        result += "XX";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (3) -> {
-                    roman += "XXX";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (3) -> {
+                        result += "XXX";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (4) -> {
-                    roman += "XL";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (4) -> {
+                        result += "XL";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (5) -> {
-                    roman += "L";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (5) -> {
+                        result += "L";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (6) -> {
-                    roman += "LX";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (6) -> {
+                        result += "LX";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (7) -> {
-                    roman += "LXX";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (7) -> {
+                        result += "LXX";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (8) -> {
-                    roman += "LXXX";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (8) -> {
+                        result += "LXXX";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (9) -> {
-                    roman += "XC";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (9) -> {
+                        result += "XC";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
-                }
-                case (10) -> {
-                    roman += "C";
-                    for (int i = 0; i < arabianForRoman.length; i++) {
-                        if (lastDigit == arabianForRoman[i]) {
-                            roman += romans[i];
-                            System.out.println(roman);
-                            break;
+                    case (10) -> {
+                        result += "C";
+                        for (int i = 0; i < arabianForRoman.length; i++) {
+                            if (lastDigit == arabianForRoman[i]) {
+                                result += romans[i];
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
-
-    return Integer.toString(total);
+    return result;
     }
 }
