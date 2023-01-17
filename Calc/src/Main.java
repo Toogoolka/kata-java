@@ -42,7 +42,6 @@ public class Main {
             }
             if (input.contains(arabians[j])) {
                 arabianFlag = true;
-                break;
             }
         }
         if (romanFlag == arabianFlag){
