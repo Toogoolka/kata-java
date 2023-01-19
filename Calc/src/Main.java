@@ -15,7 +15,7 @@ public class Main {
 
     public static String calc(String input) throws IOException{
         // Получаем строку с выражением
-        String[] romans = {"I","II","III","IV","V","VI","VII","VIII","IX","X",""};
+        String[] romans = {"I","II","III","IV","V","VI","VII","VIII","IX","X","filler"};
         String[] arabians = {"0","1","2","3","4","5","6","7","8","9","10"};
         int[] arabianForRoman = {1,2,3,4,5,6,7,8,9,10,0};
 
@@ -39,9 +39,13 @@ public class Main {
         for(int j = 0; j < romans.length; j++) {
             if (input.contains(romans[j])) {
                 romanFlag = true;
+                break;
             }
-            if (input.contains(arabians[j])) {
+        }
+        for(int i = 0; i < arabians.length; i++){
+            if (input.contains(arabians[i])) {
                 arabianFlag = true;
+                break;
             }
         }
         if (romanFlag == arabianFlag){
@@ -112,6 +116,10 @@ public class Main {
                     }
                 }
             }
+            if (valuesArabian[0] == 0 || valuesArabian[1] == 0){
+                throw new IOException("//т.к. переменные выражения не соответствует требованию от I до X включительно");
+            }
+
             //            вычисления
             switch (indexAction) {
                 case (0) -> total = valuesArabian[0] + valuesArabian[1];
